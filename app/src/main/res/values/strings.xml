@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Kotlin MVP</string>
+    <string name="firstName">Primer Nombre</string>
+    <string name="lastName">Apellido</string>
 </resources>
