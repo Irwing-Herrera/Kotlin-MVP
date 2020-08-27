@@ -2,23 +2,30 @@ package com.iherrera.kotlinmvp.login
 
 import com.iherrera.kotlinmvp.login.model.User
 
+/**
+ * Acciones que interactuan con (Room,Firebase,etc)
+ */
 class MemoryRepository : LoginRepository {
-
-    private lateinit var user: User
+    /**
+     * Instancia de Usuario
+     *
+     * @property {User?} myUser
+     */
+    private var myUser: User? = null
 
     override fun saveUser(user: User) {
         if(user == null){
-            this.user = getUser();
+            myUser = getUser();
         }
-        this.user = user;
+        myUser = user;
     }
 
     override fun getUser(): User {
-        if (this.user == null){
-            this.user = User("Antonio", "Banderas")
-            return this.user;
+        if (myUser == null){
+            myUser = User("Antonio", "Banderas")
+            return myUser!!;
         }else {
-            return this.user;
+            return myUser!!;
         }
     }
 }

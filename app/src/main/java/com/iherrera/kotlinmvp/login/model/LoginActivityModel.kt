@@ -5,6 +5,11 @@ import com.iherrera.kotlinmvp.login.LoginRepository
 
 class LoginActivityModel(loginRepository: LoginRepository) : LoginActivityMVP.Model {
 
+    /**
+     * Instancia de Repositorio
+     *
+     * @property {LoginRepository} repository
+     */
     private val repository: LoginRepository = loginRepository
 
     override fun createUser(firstName: String, lastName: String) {

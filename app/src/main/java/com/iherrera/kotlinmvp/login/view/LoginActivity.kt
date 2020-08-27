@@ -2,7 +2,7 @@ package com.iherrera.kotlinmvp.login.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.iherrera.kotlinmvp.BaseApp
+import com.iherrera.kotlinmvp.App
 import com.iherrera.kotlinmvp.R
 import com.iherrera.kotlinmvp.login.LoginActivityMVP
 import com.iherrera.kotlinmvp.utils.toast
@@ -11,18 +11,27 @@ import javax.inject.Inject
 
 class LoginActivity : AppCompatActivity(), LoginActivityMVP.View {
 
+    /**
+     * Inyectar Presentador a Vista
+     */
     @Inject
-    private lateinit var presenter: LoginActivityMVP.Presenter
+    lateinit var presenter: LoginActivityMVP.Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        presenter.setView(this)
+        (application as App).getComponent().inject(this)
 
         buttonLogIn.setOnClickListener {
             presenter.loginButtonClicked()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        presenter.setView(this)
+        presenter.getCurrentUser()
     }
 
     override fun getFirstName(): String {
